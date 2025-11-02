@@ -12,15 +12,28 @@ const tweetDivision = document.getElementById('tweet-area');
       //名前の欄が空欄なら処理を終了する
       return;
     }
-resultDivision.innerText=' ';//空文字でdivタグを空文字で上書きする
-  const header =document.createElement('h3');//h3タグの作成
-  header.innerText ='診断結果';//タグの内側のテキストを設定
-  resultDivision.appendChild(header);
+resultDivision.innerText= "";//空文字でdivタグを空文字で上書きする
+  const headerDivision =document.createElement('div');//h3タグの作成
+  headerDivision.setAttribute('class','card-header text-bg-primary');
+  headerDivision.innerText ='診断結果';//タグの内側のテキストを設定
+  
+  //bodydivisionの作成
+const bodydivision = document.createElement('div');
+bodydivision.setAttribute('class','card-body');
 
-  const paragraph = document.createElement('p');
-  const result = assessment(userName);
-  paragraph.innerText = result;
-  resultDivision.appendChild(paragraph);
+const paragraph = document.createElement('p');
+paragraph.setAttribute('class','card-text');
+const result = assessment(userName);
+paragraph.innerText = result;
+bodydivision.appendChild(paragraph);
+
+//resultDivisionにBootstrapのスタイルを適用
+resultDivision.setAttribute('class','card');
+
+//resultDivisionとbodyDivisionをresultDivisionに差し込む
+resultDivision.appendChild(headerDivision);
+resultDivision.appendChild(bodydivision);
+
   //ツイートエリアの作成
   tweetDivision.innerText='';
   const anchor= document.createElement('a');
